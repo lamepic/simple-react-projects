@@ -1,12 +1,13 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
-import "./App.css";
+import Tours from "./components/Tours";
 
 function App() {
-  const [count, setCount] = useState(0);
-
-  return <div className="text-4xl text-red-300">hello world</div>;
+  return (
+    <main className="pt-10">
+      <div className="mt-10 w-9/12 mx-auto pb-20">
+        <Tours />
+      </div>
+    </main>
+  );
 }
 
 export default App;
