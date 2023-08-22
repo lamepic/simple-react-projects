@@ -1,16 +1,31 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { useStateValue } from "../store";
+import * as actionType from "../store/actionTypes";
 
 function NewTransaction() {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, reset } = useForm();
+  const [state, dispatch] = useStateValue();
 
   const onSubmit = (values) => {
-    console.log(values);
+    const { text, amount } = values;
+
+    const data = {
+      id: state.transactions.length + 1,
+      text,
+      amount: parseFloat(amount).toFixed(2),
+    };
+
+    dispatch({
+      type: actionType.ADD_TRANSACTION,
+      payload: data,
+    });
+    reset();
   };
 
   return (
     <div>
-      <div className="space-y-5">
+      <div className="space-y-5 pb-10">
         <h1 className="border-b pb-2 border-gray-600 font-bold">
           Add new transaction
         </h1>
